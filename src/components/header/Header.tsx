@@ -1,55 +1,39 @@
-import { GoHeart } from "react-icons/go";
-import { PiShoppingCartLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { Input } from "../ui/input";
 
 function Header() {
   return (
-    <header className="border-b shadow-sm">
+    <header>
       <nav className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center py-4">
-          {/* logo */}
-          <div className="w-[20%]">
-            <Link className="text-xl font-bold" to="/">
-              Campariyan
-            </Link>
-          </div>
+        <div className="py-4">
+          {/* first navbar */}
+          <div className="grid grid-cols-6 items-center">
+            <div className="col-span-1">
+              <Link className="" to="">
+                <img className="w-[200px]" src="./images/logo.png" alt="" />
+              </Link>
+            </div>
 
-          {/* middle menu */}
-          <ul className="lg:flex justify-end space-x-4 w-[30%] text-sm hidden">
-            <li className="hover:text-red-500 transition-all">
-              <Link to="">Home</Link>
-            </li>
-            <li className="hover:text-red-500 transition-all">
-              <Link to="">Contact</Link>
-            </li>
-            <li className="hover:text-red-500 transition-all">
-              <Link to="">About</Link>
-            </li>
-            <li className="hover:text-red-500 transition-all">
-              <Link to="">Sign Up</Link>
-            </li>
-          </ul>
-
-          {/* last menu */}
-          <div className="flex w-[50%] justify-end items-center space-x-4">
-            <div className="w-[50%]">
-              <input
-                className="bg-[#F5F5F5] border-none placeholder:text-sm rounded-md w-full"
-                type="text"
-                placeholder="What are you looking for?"
+            {/* search bar */}
+            <div className="col-span-4 flex justify-center">
+              <Input
+                placeholder="Search"
+                className="placeholder:text-center w-[75%] rounded-full py-6 bg-[#f5f4f5] ring-0 border-none"
               />
             </div>
 
-            <p className="hover:animate-bounce">
+            {/* Login and register */}
+            <div className="col-span-1 flex justify-end items-center space-x-4">
               <Link to="">
-                <GoHeart className="text-2xl" />
+                <img className="size-6" src="./icons/help.svg" alt="" />
               </Link>
-            </p>
-            <p>
               <Link to="">
-                <PiShoppingCartLight className="text-2xl" />
+                <img className="size-6" src="./icons/person.svg" alt="" />
               </Link>
-            </p>
+              <Link to="">
+                <img className="size-6" src="./icons/basket.svg" alt="" />
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
