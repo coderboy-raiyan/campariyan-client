@@ -1,6 +1,27 @@
 import { Link } from "react-router-dom";
 import { Input } from "../ui/input";
 
+const categories = [
+  {
+    name: "men",
+  },
+  {
+    name: "women",
+  },
+  {
+    name: "sports",
+  },
+  {
+    name: "kids",
+  },
+  {
+    name: "accessories",
+  },
+  {
+    name: "accessories",
+  },
+];
+
 function Header() {
   return (
     <header>
@@ -35,6 +56,15 @@ function Header() {
               </Link>
             </div>
           </div>
+
+          {/* second navbar */}
+          <ul className="flex space-x-6 mt-4 text-sm text-gray-600 capitalize font-[500]">
+            {categories.map((category) => (
+              <li>
+                <Link to="">{category.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </nav>
     </header>
