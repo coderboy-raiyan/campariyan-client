@@ -1,3 +1,4 @@
+import BestSeller from "./components/BestSeller";
 import Categories from "./components/Categories";
 import Hero from "./components/Hero";
 
@@ -6,6 +7,7 @@ function Home() {
     <div>
       <Hero />
       <Categories />
+      <BestSeller />
     </div>
   );
 }
