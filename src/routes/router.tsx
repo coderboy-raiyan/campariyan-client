@@ -1,4 +1,5 @@
 import App from "@/App";
+import Cart from "@/pages/cart/cart";
 import Home from "@/pages/home/home";
 import Login from "@/pages/login";
 import ProductDetails from "@/pages/productDetails/productDetails";
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/product/:id",

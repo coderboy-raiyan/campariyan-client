@@ -52,7 +52,7 @@ function Header() {
               <Link to="">
                 <img className="size-6" src={icons.person} alt="" />
               </Link>
-              <Link to="">
+              <Link to="/cart">
                 <img className="size-6" src={icons.basket} alt="" />
               </Link>
             </div>
