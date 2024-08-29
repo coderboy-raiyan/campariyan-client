@@ -1,3 +1,4 @@
+import { icons, images } from "@/assets";
 import { Link } from "react-router-dom";
 import { Input } from "../ui/input";
 
@@ -31,7 +32,7 @@ function Header() {
           <div className="grid grid-cols-6 items-center">
             <div className="col-span-1">
               <Link className="" to="">
-                <img className="w-[200px]" src="./images/logo.png" alt="" />
+                <img className="w-[200px]" src={images.logo} alt="" />
               </Link>
             </div>
 
@@ -46,13 +47,13 @@ function Header() {
             {/* Login and register */}
             <div className="col-span-1 flex justify-end items-center space-x-4">
               <Link to="">
-                <img className="size-6" src="./icons/help.svg" alt="" />
+                <img className="size-6" src={icons.help} alt="" />
               </Link>
               <Link to="">
-                <img className="size-6" src="./icons/person.svg" alt="" />
+                <img className="size-6" src={icons.person} alt="" />
               </Link>
               <Link to="">
-                <img className="size-6" src="./icons/basket.svg" alt="" />
+                <img className="size-6" src={icons.basket} alt="" />
               </Link>
             </div>
           </div>
