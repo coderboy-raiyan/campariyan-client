@@ -1,71 +1,68 @@
 import { icons, images } from "@/assets";
-import { Link } from "react-router-dom";
-import { Input } from "../ui/input";
+import { SlLocationPin } from "react-icons/sl";
 
-const categories = [
-  {
-    name: "men",
-  },
-  {
-    name: "women",
-  },
-  {
-    name: "sports",
-  },
-  {
-    name: "kids",
-  },
-  {
-    name: "accessories",
-  },
-  {
-    name: "accessories",
-  },
-];
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header>
-      <nav className="max-w-6xl mx-auto">
-        <div className="py-4">
-          {/* first navbar */}
-          <div className="grid grid-cols-6 items-center">
-            <div className="col-span-1">
-              <Link className="" to="">
-                <img className="w-[200px]" src={images.logo} alt="" />
-              </Link>
-            </div>
+    <header className="py-4 border-b mb-10">
+      <nav className="flex justify-between max-w-7xl mx-auto items-center">
+        <div className="w-[25%] flex">
+          <img className="w-[40%] object-contain" src={images.logo} alt="" />
 
-            {/* search bar */}
-            <div className="col-span-4 flex justify-center">
-              <Input
-                placeholder="Search"
-                className="placeholder:text-center w-[75%] rounded-full py-6 bg-[#f5f4f5] ring-0 border-none"
-              />
-            </div>
-
-            {/* Login and register */}
-            <div className="col-span-1 flex justify-end items-center space-x-4">
-              <Link to="">
-                <img className="size-6" src={icons.help} alt="" />
-              </Link>
-              <Link to="">
-                <img className="size-6" src={icons.person} alt="" />
-              </Link>
-              <Link to="/cart">
-                <img className="size-6" src={icons.basket} alt="" />
-              </Link>
+          <div className="flex items-center space-x-2">
+            <SlLocationPin className="text-lg" />
+            <div>
+              <p className="text-xs">Deliver to</p>
+              <p className="text-sm font-semibold">Bangladesh</p>
             </div>
           </div>
+        </div>
 
-          {/* second navbar */}
-          <ul className="flex space-x-6 mt-4 text-sm text-gray-600 capitalize font-[500]">
-            {categories.map((category, i) => (
-              <li key={i}>
-                <Link to="">{category.name}</Link>
-              </li>
-            ))}
-          </ul>
+        {/* Search bar */}
+        <div className="w-[50%]">
+          <input
+            type="text"
+            placeholder="Search Campariyan"
+            className="w-full border p-2 rounded placeholder:text-sm"
+          />
+        </div>
+
+        <div className="w-[25%] flex justify-end space-x-5 items-center">
+          {/* Sign in and accounts */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex flex-col">
+              <p className="text-xs">Hello, sign in</p>
+              <p className="font-medium text-sm">Accounts and Lists</p>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Return and orders */}
+          <Link className="text-sm" to="/orders">
+            <span className="text-xs">Returns</span> <br />{" "}
+            <span className="font-medium">& Orders</span>
+          </Link>
+
+          {/* Cart */}
+          <Link to="/cart">
+            <img className="size-6" src={icons.basket} alt="" />
+          </Link>
         </div>
       </nav>
     </header>
