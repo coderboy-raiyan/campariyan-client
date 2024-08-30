@@ -51,7 +51,7 @@ function Categories() {
                   src="https://contents.mediadecathlon.com/s1079802/k$30f0a7f0ccf426f9cfd825207bd819f6/250x250/cb6a4c0e-9151-481e-a0b7-8309281ecea2.jpg?format=auto&f=320x0"
                   alt=""
                 />
-                <Link to="" className="hover:underline">
+                <Link to="" className="hover:underline capitalize">
                   {cate.name}
                 </Link>
               </div>
