@@ -1,24 +1,27 @@
 import Product from "@/components/product/Product";
-import { Button } from "@/components/ui/button";
+import { useAppSelector } from "@/redux/hooks/hooks";
 
 function BestSeller() {
+  const { products } = useAppSelector((state) => state.products);
+
   return (
     <section className="max-w-6xl mx-auto my-10">
       <div className="">
-        <h1 className="text-3xl font-semibold">Best Seller</h1>
+        <h1 className="text-3xl font-semibold my-10">Best Seller</h1>
       </div>
 
       {/* Products */}
-      <div className=" grid grid-cols-4 gap-4 mb-10">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-      </div>
-
-      <div className="flex justify-center">
-        <Button className="bg-gray-700 w-[20%]">Load more</Button>
-      </div>
+      {products?.length ? (
+        products?.map((product) => (
+          <div className=" grid grid-cols-5 gap-4 mb-10">
+            <Product {...product} key={product?._id} />
+          </div>
+        ))
+      ) : (
+        <p className="text-center font-bold text-gray-500 text-3xl">
+          No product is available
+        </p>
+      )}
     </section>
   );
 }

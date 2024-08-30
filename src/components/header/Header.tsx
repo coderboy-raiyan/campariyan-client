@@ -60,8 +60,8 @@ function Header() {
 
           {/* second navbar */}
           <ul className="flex space-x-6 mt-4 text-sm text-gray-600 capitalize font-[500]">
-            {categories.map((category) => (
-              <li>
+            {categories.map((category, i) => (
+              <li key={i}>
                 <Link to="">{category.name}</Link>
               </li>
             ))}

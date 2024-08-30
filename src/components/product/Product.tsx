@@ -1,24 +1,27 @@
+import { TProduct } from "@/types";
 import { Rating } from "@smastrom/react-rating";
+import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-
-function Product() {
+function Product({ name, images, reviews, price }: TProduct) {
   return (
-    <div className="border p-3 rounded shadow">
+    <div className="border p-4 rounded  flex flex-col items-center space-y-2">
       <img
-        className="mb-4"
-        src="https://thecampercoshop.com/cdn/shop/products/vango-tailgate-hub-low-barn-double-door-van-tent-i_2_360x.jpg?v=1649855477"
+        className="h-[160px] w-full object-contain my-5"
+        src={images[0]?.secure_url}
         alt=""
       />
-
-      <div className="space-y-4">
-        <h3>Vango Tailgate Hub Low Drive Away Awning</h3>
-        <div className="flex space-x-2">
-          <Rating style={{ maxWidth: 100 }} value={4} readOnly />
-          <p className="text-sm">{4.5}/5</p>
-        </div>
-        <h4>Price : $234</h4>
-        <Button>View Product</Button>
+      <Link to="" className="text-sm font-semibold text-gray-700 text-center">
+        {name}
+      </Link>
+      <div className="flex space-x-2 justify-center">
+        <Rating value={reviews?.ratings} readOnly className="w-[40%]" />
+        <p className="text-xs font-medium text-gray-500">
+          ({reviews?.totalRatings} reviews)
+        </p>
       </div>
+      <p className="text-lg font-semibold text-red-700">${price}</p>
+
+      <Button className="w-full rounded-full bg-gray-900">Add to Cart</Button>
     </div>
   );
 }

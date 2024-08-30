@@ -1,19 +1,24 @@
 import { useGetProductsQuery } from "@/redux/features/product/productApi";
 import { addProducts } from "@/redux/features/product/productSlice";
 import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useEffect } from "react";
 import BestSeller from "./components/BestSeller";
-import Categories from "./components/Categories";
 import Hero from "./components/Hero";
 
 function Home() {
-  const { data } = useGetProductsQuery(null);
+  const { data, isSuccess } = useGetProductsQuery(null);
   const dispatch = useAppDispatch();
-  dispatch(addProducts(data?.data));
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(addProducts(data?.data));
+    }
+  }, [isSuccess]);
 
   return (
     <div>
       <Hero />
-      <Categories />
+
       <BestSeller />
     </div>
   );
