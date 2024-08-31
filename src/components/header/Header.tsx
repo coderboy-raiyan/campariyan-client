@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="py-4 border-b mb-10">
+    <header className="py-4 border-b">
       <nav className="flex justify-between max-w-7xl mx-auto items-center">
         <div className="w-[25%] flex">
           <img className="w-[40%] object-contain" src={images.logo} alt="" />

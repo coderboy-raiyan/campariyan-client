@@ -1,21 +1,80 @@
+import { Link } from "react-router-dom";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import required modules
+import { Button } from "@/components/ui/button";
+import { Autoplay, Pagination } from "swiper/modules";
+
+const slides = [
+  "https://demo-morata.myshopify.com/cdn/shop/files/banner_4_3.png?v=1700725758&width=1500",
+  "https://demo-morata.myshopify.com/cdn/shop/files/banner_4_1.png?v=1700725758&width=1500",
+];
+
+const categories = [
+  "Footware Men",
+  "Women",
+  "Tents",
+  "Shoes",
+  "Electrical",
+  "kitchen",
+];
+
 function Hero() {
   return (
-    <section>
-      <div className="flex justify-between max-w-6xl mx-auto">
-        <div className="w-[40%] flex flex-col justify-center">
-          <h1 className="text-7xl font-semibold leading-relaxed">Camping</h1>
-          <p className="w-[71%]  text-gray-600">
-            Create your dream campsite with our camping essentials. Under the
-            stars, every night is an adventure waiting to unfold.
-          </p>
+    <div>
+      <div className="max-w-7xl mx-auto grid grid-cols-4 gap-x-4 my-5">
+        {/* category side */}
+        <div className="col-span-1">
+          <ul className="border  p-3 h-full">
+            {categories?.map((cate) => (
+              <li className="border-b py-1 text-sm font-semibold hover:text-red-700 transition-all">
+                <Link to="">{cate}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="w-[60%] relative">
-          <div className="h-[400px] w-full bg-blend-overlay bg-cover bg-center bg-no-repeat bg-[url('https://contents.mediadecathlon.com/s1045801/k$f565435ab9f757520f7ff22b34494a77?format=auto&f=969x0')]"></div>
-          <div className="absolute inset-0 bg-gray-900 opacity-30"></div>
+        {/* Slider */}
+        <div className="col-span-3">
+          <Swiper
+            pagination={{
+              dynamicBullets: true,
+            }}
+            autoplay={{
+              delay: 4000,
+            }}
+            modules={[Pagination, Autoplay]}
+            className="mySwiper"
+          >
+            {slides?.map((slide) => (
+              <SwiperSlide
+                style={{ backgroundImage: `url(${slide})` }}
+                className="bg-no-repeat bg-cover h-[360px] p-10"
+              >
+                <div className="flex flex-col space-y-4">
+                  <h1 className="text-5xl font-semibold w-2/4 text-gray-600 text-start">
+                    Big sale off Washing Machine
+                  </h1>
+                  <p className="text-sm text-gray-600 w-[45%] text-start">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Deleniti quia aut modi cum repudiandae delectus alias,
+                    praesentium consectetur dolorem. Accusamus.
+                  </p>
+                  <Button className="bg-gray-600 w-[20%] py-7">
+                    Get It Now
+                  </Button>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
