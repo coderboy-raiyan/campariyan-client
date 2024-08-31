@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -28,11 +29,28 @@ function Header() {
         </div>
 
         {/* Search bar */}
-        <div className="w-[50%]">
+        <div className="w-[50%] flex items-center">
+          <div className="w-[25%]">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="border w-full py-2.5 px-2  border-r-0">
+                <p className="font-medium text-sm flex items-center space-x-1">
+                  <span> All Categories</span> <IoIosArrowDown />
+                </p>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>Subscription</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
           <input
             type="text"
             placeholder="Search Campariyan"
-            className="w-full border p-2 rounded placeholder:text-sm"
+            className="w-[75%] border py-2 focus:outline-none placeholder:text-xs border-l-0"
           />
         </div>
 
