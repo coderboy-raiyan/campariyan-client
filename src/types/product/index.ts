@@ -3,6 +3,12 @@ export type TProductReviews = {
   totalRatings: number;
 };
 
+export type TCategory = {
+  name: string;
+  slug: string;
+  _id: string;
+};
+
 export type TProduct = {
   _id: string;
   name: string;
@@ -17,6 +23,6 @@ export type TProduct = {
   reviews: TProductReviews;
   price: number;
   stock: number;
-  categories: any;
+  categories: TCategory[];
   isDeleted: boolean;
 };
