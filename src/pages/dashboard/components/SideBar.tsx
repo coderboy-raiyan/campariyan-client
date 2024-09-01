@@ -11,7 +11,7 @@ function SideBar() {
                 isActive ? "bg-[#f4f4f5]" : "hover:underline"
               } block p-2 text-gray-700 rounded-md transition-all`
             }
-            to="all-products"
+            to="products"
           >
             All Products
           </NavLink>

@@ -11,9 +11,11 @@ import {
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FiEye } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 function AllProducts() {
   const { products } = useAppSelector((state) => state?.products);
+  const navigate = useNavigate();
 
   return (
     <div className="p-10">
@@ -55,6 +57,11 @@ function AllProducts() {
                 </TableCell>
                 <TableCell className="space-x-2">
                   <Button
+                    onClick={() =>
+                      navigate(`${product?._id}`, {
+                        replace: true,
+                      })
+                    }
                     variant="outline"
                     className="text-2xl rounded-md bg-cyan-100"
                   >

@@ -17,7 +17,9 @@ function Header() {
     <header className="py-4 border-b">
       <nav className="flex justify-between max-w-7xl mx-auto items-center">
         <div className="w-[25%] flex">
-          <img className="w-[40%] object-contain" src={images.logo} alt="" />
+          <Link className="w-[40%]" to="/">
+            <img className="object-contain" src={images.logo} alt="" />
+          </Link>
 
           <div className="flex items-center space-x-2">
             <SlLocationPin className="text-lg" />
