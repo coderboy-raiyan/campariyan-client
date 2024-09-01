@@ -5,8 +5,9 @@ import CreateProduct from "@/pages/dashboard/createProduct";
 import Dashboard from "@/pages/dashboard/dashboard";
 import SingleProduct from "@/pages/dashboard/singleProduct";
 import Home from "@/pages/home/home";
-import Login from "@/pages/login";
 import ProductDetails from "@/pages/productDetails/productDetails";
+import SignIn from "@/pages/signin/signIn";
+import SignUp from "@/pages/signup/SignUp";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -46,8 +47,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "/sign-in",
+        element: <SignIn />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
       },
     ],
   },
