@@ -1,7 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import baseApi from "./api/baseApi";
-import authSlice from "./features/auth/authSlice";
-import productSlice from "./features/product/productSlice";
 
 import {
   FLUSH,
@@ -14,20 +12,18 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import rootReducers from "./features";
 
 const persistConfig = {
-  key: "auth",
+  key: "root",
   storage,
+  blacklist: ["products", "baseApi"],
 };
 
-const authPersistedReducer = persistReducer(persistConfig, authSlice);
+const persistedReducers = persistReducer(persistConfig, rootReducers);
 
 const store = configureStore({
-  reducer: {
-    products: productSlice,
-    auth: authPersistedReducer,
-    [baseApi.reducerPath]: baseApi.reducer,
-  },
+  reducer: persistedReducers,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

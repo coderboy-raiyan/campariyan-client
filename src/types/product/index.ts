@@ -26,3 +26,16 @@ export type TProduct = {
   categories: TCategory[];
   isDeleted: boolean;
 };
+
+export type TCart = {
+  _id: string;
+  name: string;
+  description: string;
+  color?: string;
+  brand: string;
+  price: number;
+  stock: number;
+  images: string[];
+  quantity: number;
+  productOriginalRef: string;
+};
