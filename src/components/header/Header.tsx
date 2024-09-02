@@ -17,6 +17,8 @@ import { Button } from "../ui/button";
 
 function Header() {
   const { user, accessToken } = useAppSelector((state) => state?.auth);
+  const { cart } = useAppSelector((state) => state?.cart);
+
   const dispatch = useAppDispatch();
 
   return (
@@ -113,7 +115,10 @@ function Header() {
           </Link>
 
           {/* Cart */}
-          <Link to="/cart">
+          <Link className="relative" to="/cart">
+            <span className="absolute text-xs font-semibold bottom-[-10px] right-[-10px] flex justify-center items-center  bg-purple-600 size-5 text-white rounded-full">
+              {cart?.length}
+            </span>
             <img className="size-6" src={icons.basket} alt="" />
           </Link>
         </div>

@@ -27,15 +27,4 @@ export type TProduct = {
   isDeleted: boolean;
 };
 
-export type TCart = {
-  _id: string;
-  name: string;
-  description: string;
-  color?: string;
-  brand: string;
-  price: number;
-  stock: number;
-  images: string[];
-  quantity: number;
-  productOriginalRef: string;
-};
+export type TCart = Partial<TProduct> & { quantity: number };
