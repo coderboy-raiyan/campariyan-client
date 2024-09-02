@@ -12,11 +12,11 @@ function BestSeller() {
 
       {/* Products */}
       {products?.length ? (
-        products?.map((product) => (
-          <div className=" grid grid-cols-5 gap-4 mb-10">
+        <div className=" grid grid-cols-5 gap-4 mb-10">
+          {products?.map((product) => (
             <Product {...product} key={product?._id} />
-          </div>
-        ))
+          ))}
+        </div>
       ) : (
         <p className="text-center font-bold text-gray-500 text-3xl">
           No product is available

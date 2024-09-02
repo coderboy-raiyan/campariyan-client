@@ -31,8 +31,11 @@ function Hero() {
         {/* category side */}
         <div className="col-span-1">
           <ul className="border  p-3 h-full">
-            {categories?.map((cate) => (
-              <li className="border-b py-1 text-sm font-semibold hover:text-red-700 transition-all">
+            {categories?.map((cate, i) => (
+              <li
+                key={i}
+                className="border-b py-1 text-sm font-semibold hover:text-red-700 transition-all"
+              >
                 <Link to="">{cate}</Link>
               </li>
             ))}
@@ -51,8 +54,9 @@ function Hero() {
             modules={[Pagination, Autoplay]}
             className="mySwiper"
           >
-            {slides?.map((slide) => (
+            {slides?.map((slide, i) => (
               <SwiperSlide
+                key={i}
                 style={{ backgroundImage: `url(${slide})` }}
                 className="bg-no-repeat bg-cover h-[360px] p-10"
               >

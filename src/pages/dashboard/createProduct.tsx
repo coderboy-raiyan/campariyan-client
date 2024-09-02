@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { useCreateProductMutation } from "@/redux/features/product/productApi";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { TfiReload } from "react-icons/tfi";
+import { toast } from "sonner";
 
 type TInputs = {
   name: string;
@@ -21,6 +24,7 @@ function CreateProduct() {
     categories: "",
   });
   const [files, setFiles] = useState<any>(null);
+  const [createProduct, { isLoading }] = useCreateProductMutation();
 
   function handleOnChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,10 +56,23 @@ function CreateProduct() {
 
   async function handleFromSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("data", JSON.stringify(userInput));
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i]);
+    }
+
+    try {
+      await createProduct(formData).unwrap();
+      toast.success("Product uploaded successfully", {
+        position: "bottom-center",
+      });
+    } catch (error) {
+      toast.error("Oops! Something went wrong!", {
+        position: "bottom-center",
+      });
+      console.log(error);
     }
   }
 
@@ -87,6 +104,19 @@ function CreateProduct() {
             name="price"
             placeholder="299"
             value={userInput?.price}
+            onChange={handleOnChange}
+          />
+        </label>
+        <label className="space-y-2" htmlFor="stock">
+          <p className="text-sm font-medium">Stock</p>
+          <input
+            className="border w-full rounded placeholder:text-sm p-2"
+            id="stock"
+            type="number"
+            min={0}
+            name="stock"
+            placeholder="50"
+            value={userInput?.stock}
             onChange={handleOnChange}
           />
         </label>
@@ -147,7 +177,19 @@ function CreateProduct() {
             onChange={handleOnChange}
           />
         </label>
-        <Button type="submit">Save</Button>
+        {isLoading ? (
+          <Button disabled className="py-4 bg-[#3142da] hover:bg-[#2d3cc7] ">
+            <TfiReload className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            className="py-4 bg-[#3142da] hover:bg-[#2d3cc7] "
+          >
+            Save
+          </Button>
+        )}
       </form>
     </div>
   );

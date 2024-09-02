@@ -2,16 +2,19 @@ import { TProduct } from "@/types";
 import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-function Product({ name, images, reviews, price }: TProduct) {
+function Product({ name, images, reviews, price, _id }: TProduct) {
   return (
-    <div className="border p-4 rounded  flex flex-col items-center space-y-2">
+    <div className="border p-4 rounded  flex flex-col items-center space-y-2 justify-between">
       <img
         className="h-[160px] w-full object-contain my-5"
         src={images[0]?.secure_url}
         alt=""
       />
-      <Link to="" className="text-sm font-semibold text-gray-700 text-center">
-        {name}
+      <Link
+        to={`/product/${_id}`}
+        className="text-sm font-semibold text-gray-700 text-center hover:text-red-800"
+      >
+        {name?.slice(0, 80)}...
       </Link>
       <div className="flex space-x-2 justify-center">
         <Rating value={reviews?.ratings} readOnly className="w-[40%]" />
