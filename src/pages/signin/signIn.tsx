@@ -1,12 +1,21 @@
 import { Button } from "@/components/ui/button";
+import { useLoginCustomerMutation } from "@/redux/features/auth/authApi";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks/hooks";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { TfiReload } from "react-icons/tfi";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function SignIn() {
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
   });
+  const [signIn, { isLoading }] = useLoginCustomerMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   function handleOnChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -22,9 +31,15 @@ function SignIn() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      console.log(userInput);
+      const res = await signIn(userInput).unwrap();
+      toast(res?.message);
+      dispatch(
+        setUser({ user: res?.data?.user, accessToken: res?.data?.accessToken })
+      );
+      navigate("/");
     } catch (error) {
       console.log(error);
+      toast("Something went wrong!");
     }
   }
   return (
@@ -76,8 +91,16 @@ function SignIn() {
             onChange={handleOnChange}
           />
         </label>
-
-        <Button className="w-[80%] py-2 bg-[#3643ba]">Continue</Button>
+        {isLoading ? (
+          <Button disabled className="w-[80%] bg-[#3643ba]">
+            <TfiReload className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button type="submit" className="w-[80%] py-2 bg-[#3643ba]">
+            Sign in
+          </Button>
+        )}
 
         <div className="w-[80%]">
           <p className="text-sm font-medium text-gray-700">

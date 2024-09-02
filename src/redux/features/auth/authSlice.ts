@@ -1,6 +1,12 @@
+import { TCustomer } from "@/types/user";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+type TInitialState = {
+  user: TCustomer | null;
+  accessToken: string | null;
+};
+
+const initialState: TInitialState = {
   user: null,
   accessToken: null,
 };
@@ -13,9 +19,13 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
     },
+    logout: (state) => {
+      state.user = null;
+      state.accessToken = null;
+    },
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -9,10 +9,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { logout } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 
 function Header() {
+  const { user, accessToken } = useAppSelector((state) => state?.auth);
+  const dispatch = useAppDispatch();
+
   return (
     <header className="py-4 border-b">
       <nav className="flex justify-between max-w-7xl mx-auto items-center">
@@ -60,20 +66,43 @@ function Header() {
           {/* Sign in and accounts */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex flex-col">
-              <p className="text-xs">Hello, sign in</p>
+              <p className="text-xs">
+                Hello,{"  "}
+                {accessToken ? user?.name : "Sign in"}
+              </p>
               <p className="font-medium text-sm">Accounts and Lists</p>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuContent className="space-y-2">
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link to="/dashboard/product-management">
-                  Product Management
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              {accessToken ? (
+                <>
+                  <DropdownMenuItem className="py-2">
+                    <Link to="/products">Products</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="py-2">
+                    <Link to="/dashboard/product-management">
+                      Product Management
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Button
+                      onClick={() => dispatch(logout())}
+                      className="w-full"
+                    >
+                      Logout
+                    </Button>
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuItem>
+                    <Link to="/sign-in">Sign in</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/sign-up">Sign up</Link>
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
 
