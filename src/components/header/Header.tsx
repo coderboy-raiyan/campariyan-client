@@ -109,9 +109,9 @@ function Header() {
           </DropdownMenu>
 
           {/* Return and orders */}
-          <Link className="text-sm" to="/orders">
-            <span className="text-xs">Returns</span> <br />{" "}
-            <span className="font-medium">& Orders</span>
+          <Link className="text-sm" to="/all-products">
+            <span className="text-xs">View All</span> <br />{" "}
+            <span className="font-medium">Products</span>
           </Link>
 
           {/* Cart */}

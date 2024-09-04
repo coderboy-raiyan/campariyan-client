@@ -7,6 +7,7 @@ import Dashboard from "@/pages/dashboard/dashboard";
 import SingleProduct from "@/pages/dashboard/singleProduct";
 import Home from "@/pages/home/home";
 import ProductDetails from "@/pages/productDetails/productDetails";
+import Products from "@/pages/Products/Products";
 import SignIn from "@/pages/signin/signIn";
 import SignUp from "@/pages/signup/signUp";
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/all-products",
+        element: <Products />,
       },
       {
         path: "/product/:id",
